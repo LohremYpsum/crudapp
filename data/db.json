@@ -11,6 +11,18 @@
       "textfield": "Currently the Loading Component is in the File itself. Create dedicated Loading-Component with Spinning Wheel",
       "author": "me",
       "id": 6
+    },
+    {
+      "title": "CD/CI",
+      "textfield": "Deploy App on Vercel.com",
+      "author": "admin",
+      "id": 7
+    },
+    {
+      "title": "Choose Serverless DB",
+      "textfield": "Probably fauna.com ",
+      "author": "me",
+      "id": 8
     }
   ]
 }
