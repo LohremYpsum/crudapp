@@ -1,30 +1,42 @@
-import { useState, useEffect } from 'react';
-import React from 'react'
 import TaskList from './components/TaskList';
-import useFetch from './customHooks/useFetch';
-import * as Fa from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 import * as Im from 'react-icons/im';
 import { IconContext } from 'react-icons';
+import { getAllTasks } from './api';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
-    const { data: tasks, isPending, error } = useFetch('http://localhost:8000/blogs');
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        getAllTasks.then(res => {
+            setData(res);
+            console.log(res);
+        });
+    }, []);
+
 
     return (
         <div className="home">
-            <IconContext.Provider
-                value={{
-                    className: "custom-loading-styles",
-                }}>
-                {error && <div>{error}</div>}
-                {isPending && <div style={{
-                    display: 'flex',
-                    justifyContent: 'center'
-                }}>
-                    <Im.ImSpinner2 className="custom-spinner" />
-                </div>}
-                {tasks && <TaskList aaa={tasks} bbb="Home - Dashboard" />}
-            </IconContext.Provider>
+            <table id="customers">
+                <tr>
+                    <th>Date</th>
+                    <th>Author</th>
+                    <th>Title</th>
+                    <th>Contentpreview</th>
+                    <th>Details</th>
+                </tr>
+                {data && data.map(singleEntry => (
+                    <tr key={singleEntry.ts}>
+                        <td>{singleEntry.ts}</td>
+                        <td>{singleEntry.data.title.author}</td>
+                        <td>{singleEntry.data.title.title}</td>
+                        <td>{singleEntry.data.title.textfield.substring(0, 25)}</td>
+                        <td><Link to={`/blogs/${singleEntry.ref.id}`}>Link</Link></td>
+                    </tr>
+                ))}
+            </table>
         </div>
     )
 }

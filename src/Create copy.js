@@ -10,21 +10,26 @@ const Create = () => {
     const [isPending, setIsPending] = useState(false);
     const navigate = useNavigate();
 
-    function resetInputField() {
-        setTitle('');
-        setTextfield('');
-    }
-
     const handleSubmit = (event) => {
         // Prevnet page-refresh after clicking button
         event.preventDefault();
 
-        const collectionObject = { title, textfield, author }
-        createTask(collectionObject).then(res => {
-            console.log('Task details added to the database');
-        });
+        //takes Data from the form onSubmit
+        const blogObject = { title, textfield, author }
+        setIsPending(true);
 
-        resetInputField().then(() => { navigate('/'); })
+        //test to see if Data is being stored in array
+        console.log(blogObject);
+
+        fetch('http://localhost:8000/blogs/', {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(blogObject)
+        }).then(() => {
+            console.log('New Task added');
+            setIsPending(false);
+            navigate('/');
+        })
     }
 
     return (
