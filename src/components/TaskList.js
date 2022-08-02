@@ -25,9 +25,10 @@ const TaskList = ({ dataCollection, heading }) => {
                             <td>{singleEntry.data.title.title}</td>
                             <td>{singleEntry.data.title.textfield.substring(0, 25)}</td>
                             <td>
-                                <Link to={`/blogs/${singleEntry.ref.id}`}>Link</Link>
-                                <button onClick={() => deleteTask(singleEntry.ref.id)}>
-                                    Delete
+                                <Link to={`/tasks/${singleEntry.ref.id}`}>Link</Link>
+                                <button 
+                                onClick={() => deleteTask(singleEntry.ref.id)}>
+                                Delete
                             </button>
                             </td>
                         </tr>

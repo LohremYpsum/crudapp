@@ -19,6 +19,41 @@ const TaskDetails = () => {
         })
     }
 
+    // delete current single Task via id-match
+    /*const handleDelete = () => {
+        deleteTask(id).then(() => {
+            navigate('/');
+        })
+    };
+    */
+
+
+    /*
+    const newEmps = data.map((emp, index) => ({
+        "id": emp.title.title,
+        "name": emp.title.title,
+        "textfield": title.textfield,
+        "createdAt": new Intl.DateTimeFormat('en-US', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        }).
+            format(emp.createdAt)
+    }));
+
+    console.log(newEmps);
+
+        const handleDelete = () => {
+        fetch('http://localhost:3000/blogs/' + data.id, {
+            method: 'DELETE'
+        }).then(() => {
+            navigate('/');
+        })
+    }
+*/
     return (
 
         <div className="blog-details">
