@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getAllTasks } from './api';
 import { Link } from 'react-router-dom';
-import './customTable.css';
+import './css/customTable.css';
 
 import TaskList from './components/TaskList';
 import * as Im from 'react-icons/im';

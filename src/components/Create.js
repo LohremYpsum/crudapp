@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createTask } from './api';
+import { createTask } from '../api';
 
 const Create = () => {
     const [title, setTitle] = useState('');
@@ -20,11 +20,13 @@ const Create = () => {
         event.preventDefault();
 
         const collectionObject = { title, textfield, author }
-        createTask(collectionObject).then(res => {
+        createTask(collectionObject)
+        .then(res => {
             console.log('Task details added to the database');
         });
 
-        resetInputField().then(() => { navigate('/'); })
+        resetInputField()
+        .then(() => { navigate('/'); })
     }
 
     return (
