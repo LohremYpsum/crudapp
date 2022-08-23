@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from "./components/Layout/Navbar";
 import Home from "./Home";
-import Create from "./Create";
+import Create from "./components/Create";
 import TaskDetails from "./components/TaskDetails";
 import NotFound from './components/NotFound';
 import Footer from './components/Layout/Footer';
@@ -15,7 +15,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/create" element={<Create />} />
-            <Route path="/blogs/:id" element={<TaskDetails />} />
+            <Route path="/tasks/:id" element={<TaskDetails />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

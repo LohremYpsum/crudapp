@@ -1,53 +1,62 @@
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import useFetch from '../customHooks/useFetch';
-import * as Fa from 'react-icons/fa';
-import { IconContext } from 'react-icons';
+import { getTask, deleteTask } from '../api';
+
 
 
 const TaskDetails = () => {
 
     const { id } = useParams();
     const navigate = useNavigate();
-    // fetches Endpoint for current Blog-Entry: CHECK THE CORRECT PORT NUMBER duh (db-port, not URL-Port)
-    const { data, error, isPending } = useFetch('http://localhost:8000/blogs/' + id);
+    const [data, setData] = useState(null);
 
-    const handleDelete = () => {
-        fetch('http://localhost:8000/blogs/' + data.id, {
-            method: 'DELETE'
-        }).then(() => {
-            navigate('/');
+    // fetch API-Endpoints with useEffect. Functions declared in api/index.js
+    const test = {...data}
+
+
+    //get current single task via id-match
+    useEffect(() => {
+        getTask(id)
+        .then(data => {
+            setData(data);
+            console.log(data)
         })
-    }
+            //.then((res) => {setData(data);})
+    }, [data]);
 
+   
+    console.log('log objectprops',test)
+
+    /*
+    useEffect( () => {
+        const fetchData = async () => {
+            const newData = await getTask(id);
+            //convert Data to JSON
+            const json = await newData.json();
+            return json;
+        }
+        const result = fetchData()
+        .catch(console.error)
+        console.log(result)
+    }, [])
+*/
+
+    
     return (
 
         <div className="blog-details">
-            <IconContext.Provider
-                value={{
-                    className: "custom-icon-styles",
-                }}
 
-            >
-                {isPending && <div>Loading...</div>}
-                {error && <div>{error}</div>}
-                {data && (
-                    <article>
-                        <h2>{data.title}</h2>
-                        <p>Created by {data.author}</p>
-                        <div>
-                            {data.body}
-                        </div>
-                        <button onClick={handleDelete}>
-                            <Fa.FaTrashAlt style={{ transform: 'rotate(2deg)' }} />
-                            Delete Post
-                        </button>
+            {data && data.map(one => (
+                <article>
+                    <h2>{one.title.title}</h2>
+                    <p>Created by {one.title.title}</p>
+                    <div>
+                        {one.title.title}
+                    </div>
+                </article>
+            ))}
 
-                    </article>
-
-                )}
-            </IconContext.Provider>
         </div>
-
 
     );
 };
