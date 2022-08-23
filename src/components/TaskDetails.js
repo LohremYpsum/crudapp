@@ -8,24 +8,23 @@ const TaskDetails = () => {
 
     const { id } = useParams();
     const navigate = useNavigate();
-
     const [data, setData] = useState(null);
 
     // fetch API-Endpoints with useEffect. Functions declared in api/index.js
+    const test = {...data}
 
 
     //get current single task via id-match
-    
     useEffect(() => {
         getTask(id)
-            .then((res) => {
-                setData(data);
-                //console.log(data)
-            })
-    }, [id]);
+        .then(data => {
+            setData(data);
+            console.log(data)
+        })
+            //.then((res) => {setData(data);})
+    }, [data]);
 
-    const test = {id}
-
+   
     console.log('log objectprops',test)
 
     /*

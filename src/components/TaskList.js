@@ -3,7 +3,6 @@ import { deleteTask } from '../api';
 
 const TaskList = ({ dataCollection, heading }) => {
 
-
     return (
         <div className="blog-list">
             <h2> {heading}</h2>

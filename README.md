@@ -1,3 +1,9 @@
+# About this Project
+
+Purpose of this React App is, to create a simple CRUD-App.
+Front-End: React
+Backend: Fauna-DB
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
